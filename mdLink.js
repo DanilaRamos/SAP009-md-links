@@ -1,9 +1,9 @@
 const fs = require('fs'); //fs é uma biblioteca nativa do node
 const chalk = require('chalk'); //estilizar o texto no console
 const fetch = require('node-fetch'); //irá fazer a manipulação e validação do HTTP
-const { error } = require('console');// APARECEU SOZINHO
+//const { error } = require('console');// APARECEU SOZINHO
 
-function mdLinks(pathFile, options = {}) {
+function mdLinks(pathFile, options = {}) { //path: contém o caminho do diretório de onde o conteúdo deve ser lido e options: É um objeto que pode ser usado para especificar parâmetros opcionais que afetarão o método.
     return new Promise((resolve, reject) => {
         const arquivoExiste = fs.existsSync(pathFile); //verifica se o arquivo existe
         // const tamanhoArquivo = fs.statSync(pathFile).size; //stat irá trazer a informação sobre o arquivo
@@ -22,7 +22,7 @@ function mdLinks(pathFile, options = {}) {
                         const removerLink = link.replace(/.$/, '').replace('[', ''); //O método replace() retorna uma nova string com algumas ou todas as correspondências de um padrão substituídas por um determinado caractere (ou caracteres)  
                         const dividir = removerLink.split(']('); //Split: dividir split() O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array
                         const novoObjeto = {
-                            href: dividir[1], //vide documentação
+                            href: dividir[1], //vide documentação (read.me)
                             href: dividir[0],
                             file: pathFile,
                         };
