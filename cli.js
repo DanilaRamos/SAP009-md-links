@@ -1,12 +1,9 @@
-const chalk = require('chalk'); //estilizar o texto no console
-const path = require('path'); //contém o caminho do diretório de onde o conteúdo deve ser lido. Pode ser uma String, Buffer ou URL
-const fetch = require('node-fetch');
-const { mdlinks } = require('./mdLink');
+#!/usr/bin/env node
+const chalk = require('chalk');
 const mdLinks = require('./mdLink');
-const { error } = require('console');
-const { mainModule } = require('process');
 
-const pathFile = process.argv[2]; //Process. argv: A process.argv propriedade retorna uma matriz contendo os argumentos de linha de comando passados ​​quando o processo Node.js foi iniciado
+//Process. argv: A process.argv propriedade retorna uma matriz contendo os argumentos de linha de comando passados ​​quando o processo Node.js foi iniciado
+const pathFile = process.argv[2]; 
 const options = process.argv[3];
 
 const statusDaMensagem = {
@@ -27,10 +24,12 @@ function buscarLink(element) {
         return Promise.reject(new Error(`O elemento é invalido ou está sem URL`));
     }
 
-    return fetch(element.href)//esta chamando a função fetch
+    //esta chamando a função fetch
+    return fetch(element.href)
         .then(response => {
             element.status = response.status;
-            element.statusText = statusMessager[response.status.toString()] || response.statusText //esta pegando a resposta do status e estra tranformando em uma string
+            //esta pegando a resposta do status e estra tranformando em uma string
+            element.statusText = statusDaMensagem[response.status.toString()] || response.statusText; 
             return element;
         })
         .catch(error => {
@@ -46,36 +45,36 @@ function imprimirEstatistica(result) {
         total: result.length, 
         unique: verificaLink.length,
     };
-     console.log(chalk.orange('Total:'), stats.total);
-     console.log(chalk.orange('Unique:'), stats.unique);
+     console.log(chalk.green('Total:'), recebeEstatistica.total);
+     console.log(chalk.green('Unique:'), recebeEstatistica.unique);
 };
 
 function imprimeResultadoValidacao(element) {
     const statusColor = element.status >= 200 && element.status < 300 ? chalk.green : chalk.red;
     console.log(
     statusColor('\u2714'),
-    chalk.blue(element.file),
-    chalk.blue(element.href),
+    chalk.green(element.file),
+    chalk.white(element.href),
     statusColor(`${element.status} ${element.statusText}`),
-    chalk.blue(element.text)
+    chalk.magenta(element.text)
   );
 };
 
 function imprimirEstatisticaComFalha(result) {
-    const promise = result.map(element => buscarLink(element));
+    const promises = result.map(element => buscarLink(element));
     
-    Promise.all(promise)
+    Promise.all(promises)
         .then(linksArray => {
             const verificaLink = [...new Set(linksArray.map(element => element.href))];
-            const estatisticas = {
+            const recebeEstatistica = {
                 total: linksArray.length,
                 unique: verificaLink.length,
                 broken: linksArray.filter(element => element.status !== 200).length,
             };
 
-            console.log(chalk.grey('Total:'), estatisticas.total);
-            console.log(chalk.grey('Unique:'), estatisticas.unique);
-            console.log(chalk.grey('Broken:'), estatisticas.broken);
+            console.log(chalk.magenta('Total:'), recebeEstatistica.total);
+            console.log(chalk.magenta('Unique:'), recebeEstatistica.unique);
+            console.log(chalk.red('Broken:'), recebeEstatistica.broken);
             })
         .catch(error => {
             console.error(error);
@@ -88,7 +87,7 @@ function estatisticasComOpcaoDeValidacao() {
         imprimirEstatisticaComFalha(result);
     })
     .catch(error => {
-        console.log('Error');
+        console.log('Erro');
         console.error(error);
     });
 };
@@ -98,7 +97,7 @@ function manipularOpcaoValidada() {
     .then(result => {
       const promises = result.map(element => buscarLink(element));
 
-      Promise.all(promise)
+      Promise.all(promises)
         .then(linksArray => {
             linksArray.forEach(element => {
                 imprimeResultadoValidacao(element);
@@ -120,7 +119,7 @@ function manipularOpcaoEstatisca() {
         imprimirEstatistica(result);
     })
     .catch(error => {
-        console.log('Error');
+        console.log('Erro');
         console.error(error);
     }); 
 };
@@ -131,11 +130,12 @@ if(options === '--stats' && process.argv.includes('--validate')) {
     manipularOpcaoValidada();
 } else if(options === '--stats') {
     manipularOpcaoEstatisca();
+ //manipulação sem opção selecionada   
 } else {
     mdLinks(pathFile)
         .then(result => {
             result.forEach(element => {
-                console.log(chalk.grey(element.file), chalk.grey(element.href), chalk.grey(element.text));
+                console.log(chalk.blue('\u2764') + ' ' + chalk.red(element.file), chalk.grey(element.href), chalk.blue(element.text));
             });
         })
         .catch(error => {
