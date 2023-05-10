@@ -1,3 +1,22 @@
+A interface File provê informações sobre arquivos e permite ao JavaScript  a acessar seu conteúdo.
+
+São geralmente recuperados a partir de um objeto [FileList](https://developer.mozilla.org/pt-BR/docs/Web/API/FileList) que é retornado como resultado da seleção, pelo usuário, de arquivos através do elemento [<input>](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/Input), a partir do objeto [DataTransfer](https://developer.mozilla.org/pt-BR/docs/Web/API/DataTransfer) utilizado em operações de arrastar e soltar, ou a partir da API `mozGetAsFile()` em um [HTMLCanvasElement](https://developer.mozilla.org/pt-BR/docs/Web/API/HTMLCanvasElement). Em Gecko, códigos com privilégiios podem criar objetos File representando qualquer arquivo local sem a intereção do usuário (veja [Implementation notes](https://developer.mozilla.org/pt-BR/docs/Web/API/File#implementation_notes) para mais informações.).
+
+[Teste de retorno 400](https://httpstat.us/404).
+[gatinho salsicha](http://gatinhosalsicha.com.br/)
+
+# Título
+
+## Subtítulo
+Desenvolver sua própria biblioteca é uma experiência fundamental para qualquer
+desenvolvedora, pois te obriga a pensar na interface (API) dos seus _módulos_ e
+como ela será usada por outras desenvolvedoras. Você deve levar em conta as
+peculiaridades da linguagem, convenções e boas práticas.
+
+## 3. Objetivos de aprendizagem
+
+Reflita e depois enumere os objetivos que quer alcançar e aplique no seu projeto. Pense nisso para decidir sua estratégia de trabalho.
+
 [Markdown](https://pt.wikipedia.org/wiki/Markdown) é uma linguagem de marcação
 muito popular entre os programadores. É usada em muitas plataformas que
 manipulam texto (GitHub, fórum, blogs e etc) e é muito comum encontrar arquivos

@@ -1,11 +1,9 @@
-// module.exports = () => {
-//   // ...
-// };
-
-const fs = require('fs'); //fs é uma biblioteca nativa do node
-const chalk = require('chalk'); //estilizar o texto no console
-// const mdLink = require('./mdLink.js'); 
-const path = ('path');
+//fs é uma biblioteca nativa do node
+const fs = require('fs'); 
+//estilizar o texto no console
+const chalk = require('chalk'); 
+// // nodeconst mdLink = require('./mdLink.js'); 
+// const path = ('path');
 
 fs.readFile('./arquivos/texto.md', 'utf8', function(err, data) {
   if(err)
