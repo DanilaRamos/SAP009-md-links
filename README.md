@@ -59,7 +59,7 @@ informação que está ali.
 
 ## 3. Instalação
 
-*  `npm install md-links-danila-ramos`
+*  `npm i md-links-danila-ramos`
 
 ***
 
