@@ -10,7 +10,7 @@ function mdLinks(pathFile, options = {}) {
         const arquivoExiste = fs.existsSync(pathFile); 
     
         if(!arquivoExiste) {
-            reject(chalk.blue('\u2717') + ' ' + `O arquivo: ${chalk.red(pathFile)} não existe.`);
+            reject(chalk.red('\u274C') + ' ' + `O arquivo: ${chalk.red.underline(pathFile)} não existe.`);
         } else {
             //data: dados gerado na expressão da string
             fs.readFile(pathFile, 'utf-8', (err, data) => { 
