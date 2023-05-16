@@ -45,18 +45,18 @@ function imprimirEstatistica(result) {
         total: result.length, 
         unique: verificaLink.length,
     };
-     console.log(chalk.green('Total:'), recebeEstatistica.total);
-     console.log(chalk.green('Unique:'), recebeEstatistica.unique);
+     console.log(chalk.yellow('\u2666') + ' ' + chalk.yellow('Total:'), chalk.green(recebeEstatistica.total));
+     console.log(chalk.yellow('\u2666') + ' ' + chalk.yellow('Unique:'), chalk.green(recebeEstatistica.unique));
 };
 
 function imprimeResultadoValidacao(element) {
-    const statusColor = element.status >= 200 && element.status < 300 ? chalk.green : chalk.red;
+    const statusColor = element.status >= 200 && element.status < 300 ? chalk.green : chalk.red.bold;
     console.log(
-    statusColor('\u2714'),
+    statusColor('\u2705'),
     chalk.green(element.file),
     chalk.white(element.href),
     statusColor(`${element.status} ${element.statusText}`),
-    chalk.magenta(element.text)
+    chalk.green(element.text)
   );
 };
 
@@ -72,9 +72,9 @@ function imprimirEstatisticaComFalha(result) {
                 broken: linksArray.filter(element => element.status !== 200).length,
             };
 
-            console.log(chalk.magenta('Total:'), recebeEstatistica.total);
-            console.log(chalk.magenta('Unique:'), recebeEstatistica.unique);
-            console.log(chalk.red('Broken:'), recebeEstatistica.broken);
+            console.log(chalk.yellow('\u2666') + ' ' + chalk.yellow('Total:'), chalk.green(recebeEstatistica.total));
+            console.log(chalk.yellow('\u2666') + ' ' + chalk.yellow('Unique:'), chalk.green(recebeEstatistica.unique));
+            console.log(chalk.red('\u203C') + ' ' + chalk.red('Broken:'), chalk.red.bold(recebeEstatistica.broken));
             })
         .catch(error => {
             console.error(error);
@@ -135,7 +135,7 @@ if(options === '--stats' && process.argv.includes('--validate')) {
     mdLinks(pathFile)
         .then(result => {
             result.forEach(element => {
-                console.log(chalk.blue('\u2764') + ' ' + chalk.red(element.file), chalk.grey(element.href), chalk.blue(element.text));
+                console.log(chalk.magenta('\u2605') + ' ' + chalk.magenta(element.file), chalk.yellow(element.href), chalk.blue('\u27A4') + ' ' + ' ' + chalk.gray(element.text));
             });
         })
         .catch(error => {
