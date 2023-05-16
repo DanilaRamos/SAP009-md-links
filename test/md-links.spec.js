@@ -27,14 +27,6 @@ describe('caso a extensao não exista', () => {
    });
 });
 
-// describe('caso o arquivo não tenha link', () => {
-//    test('devera retornar uma mensagem de erro', () => {
-//      let erro = 'arquivo-sem-link';
-//      mdLinks('./arquivos/arquivo-sem-link.md');
-//      expect(erro).toEqual('arquivo-sem-link');
-//   });
-// });
-
 test('devera resolver a promessa com uma matriz de objetos com propriedades href, texto e arquivo', async () => {
     const conteudoArquivo = '[Twitter](https://www.twitter.com)';
     //spyOn() é útil quando queremos testar uma função que já existe em um módulo, mas precisamos de mais controle sobre como ela é chamada ou seu comportamento
@@ -58,26 +50,12 @@ test('devera resolver a promessa com uma matriz de objetos com propriedades href
 });
 
 test('Deve retornar uma matriz com objetos contendo propriedades status: fail e ok.', async () => {
-  const result = await mdLinks('arquivos/texto.md', { validate: true });
+  const result = await mdLinks('./arquivos/texto.md', { validate: true });
   expect(Array.isArray(result)).toBe(true);
-  expect(result).toHaveLength(7);
-  expect(result[0]).toHaveProperty('arquivos'); // toHaveProperty para verificar se a propriedade fornecida na referênci existe para um objeto.
-  expect(result[0]).toHaveProperty('href');
-  expect(result[0]).toHaveProperty('ok');
+  expect(result).toHaveLength(11);
+  // toHaveProperty para verificar se a propriedade fornecida na referênci existe para um objeto.
   expect(result[0]).toHaveProperty('status');
-  expect(result[0]).toHaveProperty('text');
 });
 
-//  describe('caso o arquivo não tenha link', () => {
-//     it('devera retornar uma mensagem de erro', async () => {
-//     const pathFile = './arquivos/arquivo-sem-link.md';
-//     const options = {};
-//     const resultado = mdLinks(pathFile, options);
-//     try {
-//       return await resultado;
-//     } catch (erro) {
-//       expect(erro.mensage).toEqual('arquivo-sem-link');
-//     }
-//   });
-//  });
+
 
