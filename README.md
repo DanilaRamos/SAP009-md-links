@@ -87,7 +87,7 @@ Mensagem de retorno quando digitado um arquivo que não existe:
 
 ## 5. Teste
 
-</br>![testes](https://github.com/DanilaRamos/SAP009-md-links/assets/104326333/c5bd53ab-45fb-40bc-b9b7-5774733df9f9)
+![testes](https://github.com/DanilaRamos/SAP009-md-links/assets/104326333/c5bd53ab-45fb-40bc-b9b7-5774733df9f9)
 
 </br>
 
