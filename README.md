@@ -87,13 +87,13 @@ Mensagem de retorno quando digitado um arquivo que não existe:
 
 ## 5. Teste
 
- <div style="display:flex">
-  <div align="center">
-    <img alt="teste" width="850"src="colocar imagem"/><br>
-  
-   Função mdLinks passou no teste.
-  </div>
-   </div>
+</br>![testes](https://github.com/DanilaRamos/SAP009-md-links/assets/104326333/c5bd53ab-45fb-40bc-b9b7-5774733df9f9)
+
+</br>
+
+<div align="center">
+Função mdLinks passou no teste.
+</div>
 
 ***
 
